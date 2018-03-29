@@ -1,0 +1,431 @@
+--Thanks for buying! <3
+--Katana made by 1Somebody5#8892
+--Made for Synapse Market
+tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+tool.Name = "Katana"
+tool.GripForward = Vector3.new(0, 0, -1)
+tool.GripPos = Vector3.new(0, 0, 0)
+tool.GripRight = Vector3.new(-0, -1, 0)
+tool.GripUp = Vector3.new(1, -0, 0)
+handle = Instance.new("Part", tool)
+handle.BrickColor = BrickColor.new("Black")
+handle.Orientation = Vector3.new(0, 0, 90)
+handle.Position = Vector3.new(-39.35, 2.024, -27.854)
+handle.Shape = Enum.PartType.Cylinder
+handle.Size = Vector3.new(1.4, 0.4, 0.4)
+handle.Name = "Handle"
+handle.TopSurface = Enum.SurfaceType.Smooth
+handle.BottomSurface = Enum.SurfaceType.Smooth
+handlecap = Instance.new("Part", tool)
+handlecap.BrickColor = BrickColor.new("Black")
+handlecap.Orientation = Vector3.new(0, 0, 90)
+handlecap.Position = Vector3.new(-39.35, 1.328, -27.854)
+handlecap.Shape = Enum.PartType.Ball
+handlecap.Size = Vector3.new(0.4, 0.4, 0.4)
+weld1 = Instance.new("WeldConstraint", handlecap)
+weld1.Part1 = handle
+weld1.Part0 = handlecap
+hitbox = Instance.new("Part", tool)
+hitbox.Transparency = 1
+hitbox.Position = Vector3.new(-39.35, 5.963, -27.694)
+hitbox.Size = Vector3.new(0.44, 6.53, 0.72)
+hitbox.CanCollide = false
+weld2 = Instance.new("WeldConstraint", hitbox)
+weld2.Part1 = handle
+weld2.Part0 = hitbox
+blade1 = Instance.new("Part", tool)
+blade1.Position = Vector3.new(-39.35, 3.497, -27.855)
+blade1.Size = Vector3.new(0.1, 1.6, 0.3)
+weld3 = Instance.new("WeldConstraint", handle)
+weld3.Part1 = blade1
+weld3.Part0 = handle
+blade2 = Instance.new("Part", tool)
+blade2.Position = Vector3.new(-39.35, 4.793, -27.811)
+blade2.Size = Vector3.new(0.1, 1.6, 0.3)
+blade2.Orientation = Vector3.new(3, 0, 0)
+weld4 = Instance.new("WeldConstraint", blade1)
+weld4.Part1 = blade2
+weld4.Part0 = blade1
+blade3 = Instance.new("Part", tool)
+blade3.Position = Vector3.new(-39.35, 6.2, -27.733)
+blade3.Size = Vector3.new(0.1, 1.6, 0.3)
+blade3.Orientation = Vector3.new(3, 0, 0)
+weld5 = Instance.new("WeldConstraint", blade2)
+weld5.Part1 = blade3
+weld5.Part0 = blade2
+blade4 = Instance.new("Part", tool)
+blade4.Position = Vector3.new(-39.35, 7.453, -27.661)
+blade4.Size = Vector3.new(0.1, 1.6, 0.3)
+blade4.Orientation = Vector3.new(4, 0, 0)
+weld6 = Instance.new("WeldConstraint", blade3)
+weld6.Part1 = blade4
+weld6.Part0 = blade3
+bladetip = Instance.new("WedgePart", tool)
+bladetip.Position = Vector3.new(-39.35, 8.728, -27.576)
+bladetip.Size = Vector3.new(0.1, 1, 0.3)
+bladetip.Orientation = Vector3.new(4, 0, 0)
+weld6 = Instance.new("WeldConstraint", blade4)
+weld6.Part1 = bladetip
+weld6.Part0 = blade4
+blade1.CanCollide = false
+blade2.CanCollide = false
+blade3.CanCollide = false
+blade4.CanCollide = false
+bladetip.CanCollide = false
+handle.CanCollide = false
+handlecap.CanCollide = false
+legclone = game.Players.LocalPlayer.Character["Right Leg"]:Clone()
+legclone.Name = "LegClone"
+legclone.Parent = game.Players.LocalPlayer.Character
+legclone.Position = game.Players.LocalPlayer.Character["Right Leg"].Position
+legcloneweld = Instance.new("WeldConstraint", legclone)
+legcloneweld.Part1 = game.Players.LocalPlayer.Character["Right Leg"]
+legcloneweld.Part0 = legclone
+legclone.Transparency = 1
+
+killin = false
+kicking = false
+
+tool.Activated:connect(function()
+	if killin == false then
+		killin = true
+		blade1.CanCollide = true
+		blade2.CanCollide = true
+		blade3.CanCollide = true
+		blade4.CanCollide = true
+		bladetip.CanCollide = true
+		handle.CanCollide = true
+	handlecap.CanCollide = true
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0, 1.5, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0, 1.3, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.3, 1.1, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.5, 0.9, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.7, 0.7, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.9, 0.5, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.1, 0.5, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.3)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.5)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.7)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.9)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.1)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.3)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.5)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.5, -1.7)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -1.9)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -2)
+	
+	wait(0.3)
+	
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -2)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -1.9)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.5, -1.7)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.5)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.3)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -1.1)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.9)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.7)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.5)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.6, -0.3)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.1, 0.5, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.9, 0.5, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.7, 0.7, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.5, 0.9, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0.3, 1.1, 0)
+	wait()
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0, 1.3, 0)
+	wait(0.1)
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0, 1.5, 0)
+	blade1.CanCollide = false
+	blade2.CanCollide = false
+	blade3.CanCollide = false
+	blade4.CanCollide = false
+	bladetip.CanCollide = false
+	handle.CanCollide = false
+	handlecap.CanCollide = false
+	killin = false
+	end
+end)
+
+tool.Unequipped:connect(function()
+	--change back
+end)
+
+tool.Equipped:connect(function()
+	--equip pose ok
+end)
+
+hitbox.Touched:connect(function(hit)
+	if killin == true then
+	if hit.Parent:FindFirstChild("Humanoid") then
+		if hit.Parent.Name ~= game.Players.LocalPlayer.Character.Name then
+			if plrmodel ~= hit.Parent then
+			plrmodel = hit.Parent
+			
+			wait()
+function getAttachment0(attachmentName)
+for _,child in next,plrmodel:GetChildren() do
+local attachment = child:FindFirstChild(attachmentName)
+if attachment then
+return attachment
+end
+end
+end
+plrmodel.Humanoid.Died:Connect(function(var)
+particle = Instance.new("ParticleEmitter", plrmodel.Head.FaceCenterAttachment)
+particle.Texture = "rbxassetid://116830967"
+particle.Color = ColorSequence.new(Color3.fromRGB(132, 29, 33))
+particle.Acceleration = Vector3.new(0, -3, 0)
+particle.Size = NumberSequence.new(0.5)
+particle.Lifetime = NumberRange.new(3)
+particle.Rate = 15
+particle.Speed = NumberRange.new(5)
+particle.SpreadAngle = Vector2.new(0, 5)
+particle.EmissionDirection = "Bottom"
+
+particle1 = Instance.new("ParticleEmitter", plrmodel.Torso.NeckAttachment)
+particle1.Texture = "rbxassetid://116830967"
+particle1.Color = ColorSequence.new(Color3.fromRGB(132, 29, 33))
+particle1.Size = NumberSequence.new(0.5)
+particle1.Lifetime = NumberRange.new(3)
+particle1.Rate = 15
+particle1.Acceleration = Vector3.new(0, -3, 0)
+particle1.Speed = NumberRange.new(5)
+particle1.SpreadAngle = Vector2.new(0, 15)
+particle1.EmissionDirection = "Top"
+local removeHRP = true
+local leftarm = plrmodel["Left Arm"]
+local leftleg = plrmodel["Left Leg"]
+local rightleg = plrmodel["Right Leg"]
+local rightarm = plrmodel["Right Arm"]
+local torso = plrmodel.Torso
+local root = plrmodel.HumanoidRootPart
+if removeHRP == true then
+root:Destroy()
+end
+local rootA =Instance.new("Attachment")
+local LeftArmA = Instance.new("Attachment")
+local LeftLegA = Instance.new("Attachment")
+local RightArmA = Instance.new("Attachment")
+local RightLegA = Instance.new("Attachment")
+local TorsoA = Instance.new("Attachment")
+local TorsoA1 = Instance.new("Attachment")
+local TorsoA2 = Instance.new("Attachment")
+local TorsoA3 = Instance.new("Attachment")
+local TorsoA4 = Instance.new("Attachment")
+local TorsoA5 = Instance.new("Attachment")
+local function set1()
+LeftArmA.Name = "LeftArmA"
+LeftArmA.Parent = leftarm
+LeftArmA.Position = Vector3.new(0.5, 1, 0)
+LeftArmA.Rotation = Vector3.new(0, 0, 0)
+LeftArmA.Axis = Vector3.new(1, 0, 0)
+LeftArmA.SecondaryAxis = Vector3.new(0, 1, 0)
+LeftLegA.Name = "LeftLegA"
+LeftLegA.Parent = leftleg
+LeftLegA.Position = Vector3.new(0, 1, 0)
+LeftLegA.Rotation = Vector3.new(0, 0, 0)
+LeftLegA.Axis = Vector3.new(1, 0, 0)
+LeftLegA.SecondaryAxis = Vector3.new(0, 1, 0)
+RightArmA.Name = "RightArmA"
+RightArmA.Parent = rightarm
+RightArmA.Position = Vector3.new(-0.5, 1, 0)
+RightArmA.Rotation = Vector3.new(0, 0, 0)
+RightArmA.Axis = Vector3.new(1, 0, 0)
+RightArmA.SecondaryAxis = Vector3.new(0, 1, 0)
+RightLegA.Name = "RightLegA"
+RightLegA.Parent = rightleg
+RightLegA.Position = Vector3.new(0, 1, 0)
+RightLegA.Rotation = Vector3.new(0, 0, 0)
+RightLegA.Axis = Vector3.new(1, 0, 0)
+RightLegA.SecondaryAxis = Vector3.new(0, 1, 0)
+rootA.Name= "rootA"
+rootA.Parent = root
+rootA.Position = Vector3.new(0, 0, 0)
+rootA.Rotation = Vector3.new(0, 90, 0)
+rootA.Axis = Vector3.new(0, 0, -1)
+rootA.SecondaryAxis = Vector3.new(0, 1, 0)
+end
+local function set2()
+TorsoA.Name = "TorsoA"
+TorsoA.Parent = torso
+TorsoA.Position = Vector3.new(0.5, -1, 0)
+TorsoA.Rotation = Vector3.new(0, 0, 0)
+TorsoA.Axis = Vector3.new(1, 0, 0)
+TorsoA.SecondaryAxis = Vector3.new(0, 1, 0)
+TorsoA1.Name = "TorsoA1"
+TorsoA1.Parent = torso
+TorsoA1.Position = Vector3.new(-0.5, -1, 0)
+TorsoA1.Rotation = Vector3.new(0, 0, 0)
+TorsoA1.Axis = Vector3.new(1, 0, 0)
+TorsoA1.SecondaryAxis = Vector3.new(0, 1, 0)
+TorsoA2.Name = "TorsoA2"
+TorsoA2.Parent = torso
+TorsoA2.Position = Vector3.new(-1, 1, 0)
+TorsoA2.Rotation = Vector3.new(0, 0, 0)
+TorsoA2.Axis = Vector3.new(1, 0, 0)
+TorsoA2.SecondaryAxis = Vector3.new(0, 1, 0)
+TorsoA3.Name = "TorsoA3"
+TorsoA3.Parent = torso
+TorsoA3.Position = Vector3.new(1, 1, 0)
+TorsoA3.Rotation = Vector3.new(0, 0, 0)
+TorsoA3.Axis = Vector3.new(1, 0, 0)
+TorsoA3.SecondaryAxis = Vector3.new(0, 1, 0)
+TorsoA4.Name = "TorsoA4"
+TorsoA4.Parent = torso
+TorsoA4.Position = Vector3.new(0, 1, 0)
+TorsoA4.Rotation = Vector3.new(0, 0, 0)
+TorsoA4.Axis = Vector3.new(1, 0, 0)
+TorsoA4.SecondaryAxis = Vector3.new(0, 1, 0)
+TorsoA5.Name = "TorsoA5"
+TorsoA5.Parent = torso
+TorsoA5.Position = Vector3.new(0, 0, 0)
+TorsoA5.Rotation = Vector3.new(0, 90, 0)
+TorsoA5.Axis = Vector3.new(0, 0, -1)
+TorsoA5.SecondaryAxis = Vector3.new(0, 1, 0)
+end
+local function set3()
+end
+spawn(set1);
+spawn(set2);
+local LAT = Instance.new("BallSocketConstraint")
+LAT.Parent = leftarm
+LAT.Attachment0 = LeftArmA
+LAT.Attachment1 = TorsoA2
+LAT.Enabled = true
+LAT.LimitsEnabled=true
+LAT.UpperAngle=90
+local RAT = Instance.new("BallSocketConstraint")
+RAT.Parent = rightarm
+RAT.Attachment0 = RightArmA
+RAT.Attachment1 = TorsoA3
+RAT.Enabled = true
+RAT.LimitsEnabled=true
+RAT.UpperAngle=90
+local TLL = Instance.new("BallSocketConstraint")
+TLL.Parent = torso
+TLL.Attachment0 = TorsoA1
+TLL.Attachment1 = LeftLegA
+TLL.Enabled = true
+TLL.LimitsEnabled=true
+TLL.UpperAngle=90
+local TRL = Instance.new("BallSocketConstraint")
+TRL.Parent = torso
+TRL.Attachment0 = TorsoA
+TRL.Attachment1 = RightLegA
+TRL.Enabled = true
+TRL.LimitsEnabled=true
+TRL.UpperAngle=90
+local RTA = Instance.new("BallSocketConstraint")
+RTA.Parent = root
+RTA.Attachment0 = rootA
+RTA.Attachment1 = TorsoA5
+RTA.Enabled = true
+RTA.LimitsEnabled=true
+RTA.UpperAngle=0
+
+for _,child in next,plrmodel:GetChildren() do
+if child:IsA("Accoutrement") then
+for _,part in next,child:GetChildren() do
+if part:IsA("BasePart") then
+part.Parent = plrmodel
+child:remove()
+local attachment1 = part:FindFirstChildOfClass("Attachment")
+local attachment0 = getAttachment0(attachment1.Name)
+if attachment0 and attachment1 then
+local constraint = Instance.new("HingeConstraint")
+constraint.Attachment0 = attachment0
+constraint.Attachment1 = attachment1
+constraint.LimitsEnabled = true
+constraint.UpperAngle = 0
+constraint.LowerAngle = 0
+constraint.Parent = plrmodel
+end
+end
+end
+end
+end
+end)
+plrmodel:BreakJoints()
+wait(1)
+		end
+		end
+	end
+	end
+end)
+
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.Q then
+		if kicking == false then
+			kicking = true
+			legclone.CanCollide = true
+			game.Players.LocalPlayer.Character["Right Leg"].CanCollide = true
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.2, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.4, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.6, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.8, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1.2, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1.4, 1.55, 0)
+			wait(0.3)
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1.4, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1.2, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(1, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.8, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.6, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.4, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0.2, 1.55, 0)
+			wait()
+			game.Players.LocalPlayer.Character.Torso["Right Hip"].C0 = CFrame.new(1, -1, 0) * CFrame.Angles(0, 1.55, 0)
+			legclone.CanCollide = false
+			kicking = false
+		end
+	end
+end
+ 
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+--ok made by 1Somebody5#8892
+--Removing ^ that line will make you gay
