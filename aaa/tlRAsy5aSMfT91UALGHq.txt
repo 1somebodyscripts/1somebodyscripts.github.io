@@ -1,5 +1,56 @@
 --Katana made by 1Somebody5#8892
 --Made for Synapse Market
+function alert(text)
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.268382341, 0, 0, 30)
+Frame.Size = UDim2.new(0.463235319, 0, 0.179104477, 0)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.new(0.388235, 0.388235, 0.388235)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(1.00073528, 0, 0.0832613781, 0)
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = ""
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextWrapped = true
+Frame.Position = UDim2.new(0.268, 0,0, -140)
+Frame:TweenPosition(UDim2.new(0.268, 0,0, 30), "Out", "Quint", 2)
+wait(0.3)
+stringok = text
+lenok = string.len(stringok)
+for I=1,lenok do
+		TextLabel.Text = string.sub(stringok,1,I)
+		wait(0.01)
+end
+wait(0.5)
+for i=1, 50 do
+	Frame.BackgroundTransparency = Frame.BackgroundTransparency+0.02
+	Frame_2.BackgroundTransparency = Frame.BackgroundTransparency+0.02
+	TextLabel.TextTransparency = Frame.BackgroundTransparency+0.02
+	wait()
+end
+ScreenGui:Destroy()
+end
+if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+alert("Sorry, this script does not work with an R15 character. Use R6 instead!")
+else
+alert("Thank you for using 1Somebody5's Katana, " .. game.Players.LocalPlayer.Name .. "!")
 tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
 tool.Name = "Katana"
 tool.GripForward = Vector3.new(0, 0, -1)
@@ -81,13 +132,26 @@ legcloneweld = Instance.new("WeldConstraint", legclone)
 legcloneweld.Part1 = game.Players.LocalPlayer.Character["Right Leg"]
 legcloneweld.Part0 = legclone
 legclone.Transparency = 1
+attachmentA = Instance.new("Attachment", blade1)
+attachmentB = Instance.new("Attachment", bladetip)
+attachmentB.Position = Vector3.new(0, 0.379, 0.033)
+attachmentA.Position = Vector3.new(-0, -0.791, -0.002)
+Trail = Instance.new("Trail", bladetip)
+Trail.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+Trail.Attachment0 = attachmentA
+Trail.Attachment1 = attachmentB
+Trail.Lifetime = 0.1
+Trail.Enabled = false
+
 
 killin = false
 kicking = false
+running = false
 
 tool.Activated:connect(function()
 	if killin == false then
 		killin = true
+		Trail.Enabled = true
 		blade1.CanCollide = true
 		blade2.CanCollide = true
 		blade3.CanCollide = true
@@ -172,6 +236,7 @@ tool.Activated:connect(function()
 	handle.CanCollide = false
 	handlecap.CanCollide = false
 	killin = false
+	Trail.Enabled = false
 	end
 end)
 
@@ -189,7 +254,8 @@ hitbox.Touched:connect(function(hit)
 		if hit.Parent.Name ~= game.Players.LocalPlayer.Character.Name then
 			if plrmodel ~= hit.Parent then
 			plrmodel = hit.Parent
-			
+			if plrmodel:FindFirstChild("HumanoidRootPart") then
+			if plrmodel.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 			wait()
 function getAttachment0(attachmentName)
 for _,child in next,plrmodel:GetChildren() do
@@ -200,6 +266,8 @@ end
 end
 end
 plrmodel.Humanoid.Died:Connect(function(var)
+	if plrmodel.Torso:FindFirstChild("NeckAttachment") then
+		if plrmodel.Head:FindFirstChild("FaceCenterAttachment") then
 particle = Instance.new("ParticleEmitter", plrmodel.Head.FaceCenterAttachment)
 particle.Texture = "rbxassetid://116830967"
 particle.Color = ColorSequence.new(Color3.fromRGB(132, 29, 33))
@@ -221,6 +289,8 @@ particle1.Acceleration = Vector3.new(0, -3, 0)
 particle1.Speed = NumberRange.new(5)
 particle1.SpreadAngle = Vector2.new(0, 15)
 particle1.EmissionDirection = "Top"
+		end
+		end
 local removeHRP = true
 local leftarm = plrmodel["Left Arm"]
 local leftleg = plrmodel["Left Leg"]
@@ -374,6 +444,136 @@ end
 end
 end
 end)
+			end
+			end
+			if plrmodel.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+				wait()
+function recurse(root,callback,i)
+	i= i or 0
+	for _,v in pairs(root:GetChildren()) do
+		i = i + 1
+		callback(i,v)
+		
+		if #v:GetChildren() > 0 then
+			i = recurse(v,callback,i)
+		end
+	end
+	
+	return i
+end
+function ragdollJoint(part0, part1, attachmentName, className, properties)
+	attachmentName = attachmentName.."RigAttachment"
+	local constraint = Instance.new(className.."Constraint")
+	constraint.Attachment0 = part0:FindFirstChild(attachmentName)
+	constraint.Attachment1 = part1:FindFirstChild(attachmentName)
+	constraint.Name = "RagdollConstraint"..part1.Name
+	for _,propertyData in next,properties or {} do
+		constraint[propertyData[1]] = propertyData[2]
+	end
+	constraint.Parent = plrmodel
+end
+function getAttachment0(attachmentName)
+	for _,child in next,plrmodel:GetChildren() do
+		local attachment = child:FindFirstChild(attachmentName)
+		if attachment then
+			return attachment
+		end
+	end
+end
+plrmodel:WaitForChild("Humanoid").Died:connect(function()
+		if plrmodel.UpperTorso:FindFirstChild("NeckAttachment") then
+		if plrmodel.Head:FindFirstChild("FaceCenterAttachment") then
+particle = Instance.new("ParticleEmitter", plrmodel.Head.FaceCenterAttachment)
+particle.Texture = "rbxassetid://116830967"
+particle.Color = ColorSequence.new(Color3.fromRGB(132, 29, 33))
+particle.Acceleration = Vector3.new(0, -3, 0)
+particle.Size = NumberSequence.new(0.5)
+particle.Lifetime = NumberRange.new(3)
+particle.Rate = 15
+particle.Speed = NumberRange.new(5)
+particle.SpreadAngle = Vector2.new(0, 5)
+particle.EmissionDirection = "Bottom"
+
+particle1 = Instance.new("ParticleEmitter", plrmodel.UpperTorso.NeckAttachment)
+particle1.Texture = "rbxassetid://116830967"
+particle1.Color = ColorSequence.new(Color3.fromRGB(132, 29, 33))
+particle1.Size = NumberSequence.new(0.5)
+particle1.Lifetime = NumberRange.new(3)
+particle1.Rate = 15
+particle1.Acceleration = Vector3.new(0, -3, 0)
+particle1.Speed = NumberRange.new(5)
+particle1.SpreadAngle = Vector2.new(0, 15)
+particle1.EmissionDirection = "Top"
+		end
+		end
+	local camera = workspace.CurrentCamera
+	if camera.CameraSubject == plrmodel.Humanoid then
+		camera.CameraSubject = plrmodel.UpperTorso
+	end
+	plrmodel.HumanoidRootPart.Anchored = true
+	plrmodel.HumanoidRootPart.CanCollide = false
+	recurse(plrmodel, function(_,v)
+		if v:IsA("Attachment") then
+			v.Axis = Vector3.new(0, 1, 0)
+			v.SecondaryAxis = Vector3.new(0, 0, 1)
+			v.Rotation = Vector3.new(0, 0, 0)
+		end
+	end)
+	for _,child in next,plrmodel:GetChildren() do
+		if child:IsA("Accoutrement") then
+			for _,part in next,child:GetChildren() do
+				if part:IsA("BasePart") then
+					part.Parent = plrmodel
+					child:remove()
+					local attachment1 = part:FindFirstChildOfClass("Attachment")
+					local attachment0 = getAttachment0(attachment1.Name)
+					if attachment0 and attachment1 then
+						local constraint = Instance.new("HingeConstraint")
+						constraint.Attachment0 = attachment0
+						constraint.Attachment1 = attachment1
+						constraint.LimitsEnabled = true
+						constraint.UpperAngle = 0
+						constraint.LowerAngle = 0
+						constraint.Parent = plrmodel
+					end
+				end
+			end
+		end
+	end
+	ragdollJoint(plrmodel.LowerTorso, plrmodel.UpperTorso, "Waist", "BallSocket", {
+		{"LimitsEnabled",true};
+		{"UpperAngle",5};
+	})
+	
+	local handProperties = {
+		{"LimitsEnabled", true};
+		{"UpperAngle",0};
+		{"LowerAngle",0};
+	}
+	ragdollJoint(plrmodel.LeftLowerArm, plrmodel.LeftHand, "LeftWrist", "Hinge", handProperties)
+	ragdollJoint(plrmodel.RightLowerArm, plrmodel.RightHand, "RightWrist", "Hinge", handProperties)
+	local shinProperties = {
+		{"LimitsEnabled", true};
+		{"UpperAngle", 0};
+		{"LowerAngle", -75};
+	}
+	ragdollJoint(plrmodel.LeftUpperLeg, plrmodel.LeftLowerLeg, "LeftKnee", "Hinge", shinProperties)
+	ragdollJoint(plrmodel.RightUpperLeg, plrmodel.RightLowerLeg, "RightKnee", "Hinge", shinProperties)
+	local footProperties = {
+		{"LimitsEnabled", true};
+		{"UpperAngle", 15};
+		{"LowerAngle", -45};
+	}
+	ragdollJoint(plrmodel.LeftLowerLeg, plrmodel.LeftFoot, "LeftAnkle", "Hinge", footProperties)
+	ragdollJoint(plrmodel.RightLowerLeg, plrmodel.RightFoot, "RightAnkle", "Hinge", footProperties)
+	ragdollJoint(plrmodel.UpperTorso, plrmodel.LeftUpperArm, "LeftShoulder", "BallSocket")
+	ragdollJoint(plrmodel.LeftUpperArm, plrmodel.LeftLowerArm, "LeftElbow", "BallSocket")
+	ragdollJoint(plrmodel.UpperTorso, plrmodel.RightUpperArm, "RightShoulder", "BallSocket")
+	ragdollJoint(plrmodel.RightUpperArm, plrmodel.RightLowerArm, "RightElbow", "BallSocket")
+	ragdollJoint(plrmodel.LowerTorso, plrmodel.LeftUpperLeg, "LeftHip", "BallSocket")
+	ragdollJoint(plrmodel.LowerTorso, plrmodel.RightUpperLeg, "RightHip", "BallSocket")
+end)
+			end
 plrmodel:BreakJoints()
 wait(1)
 		end
@@ -426,3 +626,50 @@ function onKeyPress(inputObject, gameProcessedEvent)
 end
  
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.E then
+		if running == false then
+		running = true
+		Trail.Enabled = true
+		tool.GripUp = Vector3.new(-1, 0, 0)
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(0, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-1.55, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.2, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-1.7, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.3, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-1.9, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.5, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-2.2, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.5, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-2.5, 1.5, 0)
+		wait(3)--Turn Point
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.5, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-2.5, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-2.2, 1.5, 0)
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.5, -1.55, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.3, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-2.2, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(-0.5, -1.55, 0)
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-1.7, 1.5, 0)
+		wait()
+		game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(-1.9, 1.5, 0)
+		game.Players.LocalPlayer.Character.Torso["Left Shoulder"].C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(0, -1.55, 0)
+		
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+		tool.GripUp = Vector3.new(1, 0, 0)
+		Trail.Enabled = false
+		running = false
+		end
+	end
+end
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+end
