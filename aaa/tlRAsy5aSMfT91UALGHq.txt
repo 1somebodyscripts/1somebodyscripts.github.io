@@ -848,7 +848,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		spinning = true
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
 		for i=1, 175 do
-		wait()
+		wait(0.01)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(script.Parent.HumanoidRootPart.Position) * CFrame.Angles(0, anglething, 0)
 anglething = anglething +0.55
 		end
