@@ -214,6 +214,7 @@ tool.Activated:connect(function()
 	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -1.9)
 	wait()
 	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -2)
+	if spinning == true then
 		wait(4)
 	end
 	wait(0.3)
