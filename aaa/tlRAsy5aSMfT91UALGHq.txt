@@ -142,11 +142,31 @@ Trail.Attachment0 = attachmentA
 Trail.Attachment1 = attachmentB
 Trail.Lifetime = 0.1
 Trail.Enabled = false
-
-
+mouse = game.Players.LocalPlayer:GetMouse()
 killin = false
 kicking = false
 running = false
+gone = false
+overthere = false
+
+attachment_a = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
+attachment_b = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
+attachment_c = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
+attachment_d = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
+attachment_a.Position = Vector3.new(0, 0, 7)
+attachment_b.Position = Vector3.new(0, 0, -7)
+attachment_c.Position = Vector3.new(7, 0, 0)
+attachment_d.Position = Vector3.new(-7, 0, 0)
+smokea = Instance.new("Smoke", attachment_a)
+smokeb = Instance.new("Smoke", attachment_b)
+smokec = Instance.new("Smoke", attachment_c)
+smoked = Instance.new("Smoke", attachment_d)
+smokee = Instance.new("Smoke", game.Players.LocalPlayer.Character.HumanoidRootPart)
+smokea.Enabled = false
+smokeb.Enabled = false
+smokec.Enabled = false
+smoked.Enabled = false
+smokee.Enabled = false
 
 tool.Activated:connect(function()
 	if killin == false then
@@ -630,6 +650,7 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
 function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.E then
 		if running == false then
+			if gone == false then
 		running = true
 		Trail.Enabled = true
 		tool.GripUp = Vector3.new(-1, 0, 0)
@@ -668,8 +689,147 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		tool.GripUp = Vector3.new(1, 0, 0)
 		Trail.Enabled = false
 		running = false
+			end
 		end
 	end
 end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.Z then
+		if gone == false then
+			if running == false then
+			gone = true
+			smokea.Color = Color3.fromRGB(21, 21, 21)
+			smokea.Opacity = 1
+			smokea.RiseVelocity = 0
+			smokea.Size = 10
+			smokeb.Color = Color3.fromRGB(21, 21, 21)
+			smokeb.Opacity = 1
+			smokeb.RiseVelocity = 0
+			smokeb.Size = 10
+			smokec.Color = Color3.fromRGB(21, 21, 21)
+			smokec.Opacity = 1
+			smokec.RiseVelocity = 0
+			smokec.Size = 10
+			smoked.Color = Color3.fromRGB(21, 21, 21)
+			smoked.Opacity = 1
+			smoked.RiseVelocity = 0
+			smoked.Size = 10
+			smokee.Color = Color3.fromRGB(21, 21, 21)
+			smokee.Opacity = 1
+			smokee.RiseVelocity = 0
+			smokee.Size = 10
+			smokea.Enabled = true
+			smokeb.Enabled = true
+			smokec.Enabled = true
+			smoked.Enabled = true
+			smokee.Enabled = true
+			wait(4)
+			smokea.Enabled = false
+			smokeb.Enabled = false
+			smokec.Enabled = false
+			smoked.Enabled = false
+			smokee.Enabled = false
+			faceid = game.Players.LocalPlayer.Character.Head.face.Texture
+			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
+					if descendant.Name ~= "HumanoidRootPart" then
+						descendant.Transparency = 1
+					end
+				end
+			end
+			game.Players.LocalPlayer.Character.Head.face.Texture = ""
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+			wow_a_sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+			wow_a_sound.SoundId = "rbxassetid://236382703"
+			wow_a_sound:Play()
+			wait(5)
+			wow_a_sound:Destroy()
+			game.Players.LocalPlayer.Character.Head.face.Texture = faceid
+			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
+					if descendant.Name ~= "HumanoidRootPart" then
+						descendant.Transparency = 0
+					end
+				end
+			end
+			hitbox.Transparency = 1
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+			gone = false
+			end
+		end
+	end
 end
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.X then
+			if running == false then
+				if overthere == false then
+			overthere = true
+			setmousehit = mouse.hit
+			smokea.Enabled = true
+			smokeb.Enabled = true
+			smokec.Enabled = true
+			smoked.Enabled = true
+			smokee.Enabled = true
+			smokea.Color = Color3.fromRGB(21, 21, 21)
+			smokea.Opacity = 1
+			smokea.RiseVelocity = 0
+			smokea.Size = 10
+			smokeb.Color = Color3.fromRGB(21, 21, 21)
+			smokeb.Opacity = 1
+			smokeb.RiseVelocity = 0
+			smokeb.Size = 10
+			smokec.Color = Color3.fromRGB(21, 21, 21)
+			smokec.Opacity = 1
+			smokec.RiseVelocity = 0
+			smokec.Size = 10
+			smoked.Color = Color3.fromRGB(21, 21, 21)
+			smoked.Opacity = 1
+			smoked.RiseVelocity = 0
+			smoked.Size = 10
+			smokee.Color = Color3.fromRGB(21, 21, 21)
+			smokee.Opacity = 1
+			smokee.RiseVelocity = 0
+			smokee.Size = 10
+			wait(4)
+			smokea.Enabled = false
+			smokeb.Enabled = false
+			smokec.Enabled = false
+			smoked.Enabled = false
+			smokee.Enabled = false
+			faceid = game.Players.LocalPlayer.Character.Head.face.Texture
+			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
+					if descendant.Name ~= "HumanoidRootPart" then
+						descendant.Transparency = 1
+					end
+				end
+			end
+			game.Players.LocalPlayer.Character.Head.face.Texture = ""
+			wow_a_sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+			wow_a_sound.SoundId = "rbxassetid://236382703"
+			wow_a_sound:Play()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = setmousehit
+			wait(1.5)
+			wow_a_sound:Destroy()
+			game.Players.LocalPlayer.Character.Head.face.Texture = faceid
+			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
+					if descendant.Name ~= "HumanoidRootPart" then
+						descendant.Transparency = 0
+					end
+				end
+			end
+			hitbox.Transparency = 1
+			overthere = false
+			end
+			end
+			end
+end
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+end --This line should always be at the end (if not R15 line)
