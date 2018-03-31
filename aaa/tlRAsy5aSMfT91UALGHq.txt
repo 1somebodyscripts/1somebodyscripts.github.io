@@ -841,6 +841,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+--[[
 function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.C then
 		if spinning == false then
@@ -849,7 +850,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
 		for i=1, 175 do
 		wait()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(script.Parent.HumanoidRootPart.Position) * CFrame.Angles(0, anglething, 0)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(script.Parent.HumanoidRootPart.Position) * CFrame.Angles(0, anglething, 0) --This line is breaking the script.
 anglething = anglething +0.55
 		end
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
@@ -857,5 +858,5 @@ spinning = false
 	end
 	end
 	end
-game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)]]--
 end --This line should always be at the end (if not R15 line)
