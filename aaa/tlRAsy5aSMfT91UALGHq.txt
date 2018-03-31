@@ -149,7 +149,6 @@ running = false
 gone = false
 overthere = false
 spinning = false
-anglething = 0
 
 attachment_a = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
 attachment_b = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
@@ -846,9 +845,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.C then
 		if spinning == false then
 		spinning = true
+		anglething = 0
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
 		for i=1, 175 do
-		wait(0.01)
+		wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(script.Parent.HumanoidRootPart.Position) * CFrame.Angles(0, anglething, 0)
 anglething = anglething +0.55
 		end
