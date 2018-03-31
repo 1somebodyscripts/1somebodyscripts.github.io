@@ -148,6 +148,8 @@ kicking = false
 running = false
 gone = false
 overthere = false
+spinning = false
+anglething = 0
 
 attachment_a = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
 attachment_b = Instance.new("Attachment", game.Players.LocalPlayer.Character.HumanoidRootPart)
@@ -212,7 +214,8 @@ tool.Activated:connect(function()
 	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -1.9)
 	wait()
 	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -2)
-	
+		wait(4)
+	end
 	wait(0.3)
 	
 	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(1.2, 0.4, -2)
@@ -651,6 +654,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.E then
 		if running == false then
 			if gone == false then
+				if spinning == false then
 		running = true
 		Trail.Enabled = true
 		tool.GripUp = Vector3.new(-1, 0, 0)
@@ -690,7 +694,8 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		Trail.Enabled = false
 		running = false
 			end
-		end
+			end
+			end
 	end
 end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
@@ -699,6 +704,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.Z then
 		if gone == false then
 			if running == false then
+				if spinning == false then
 			gone = true
 			smokea.Color = Color3.fromRGB(21, 21, 21)
 			smokea.Opacity = 1
@@ -760,7 +766,8 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 			gone = false
 			end
-		end
+			end
+			end
 	end
 end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
@@ -769,6 +776,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 	if inputObject.KeyCode == Enum.KeyCode.X then
 			if running == false then
 				if overthere == false then
+					if spinning == false then
 			overthere = true
 			setmousehit = mouse.hit
 			smokea.Enabled = true
@@ -828,8 +836,25 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			hitbox.Transparency = 1
 			overthere = false
 			end
-			end
+				end
+				end
 			end
 end
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.C then
+		if spinning == false then
+		spinning = true
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
+		for i=1, 175 do
+		wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(script.Parent.HumanoidRootPart.Position) * CFrame.Angles(0, anglething, 0)
+anglething = anglething +0.55
+		end
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+spinning = false
+	end
+	end
+	end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
 end --This line should always be at the end (if not R15 line)
