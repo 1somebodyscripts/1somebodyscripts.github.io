@@ -80,6 +80,7 @@ hitbox.Transparency = 1
 hitbox.Position = Vector3.new(-39.35, 5.963, -27.694)
 hitbox.Size = Vector3.new(0.44, 6.53, 0.72)
 hitbox.CanCollide = false
+hitbox.Name = "HitBox"
 weld2 = Instance.new("WeldConstraint", hitbox)
 weld2.Part1 = handle
 weld2.Part0 = hitbox
@@ -740,7 +741,11 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
 					if descendant.Name ~= "HumanoidRootPart" then
+					if descendant.Name ~= "LegClone" then
+						if descendant.Name ~= "HitBox" then
 						descendant.Transparency = 1
+						end
+					end
 					end
 				end
 			end
@@ -756,7 +761,11 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
 					if descendant.Name ~= "HumanoidRootPart" then
+					if descendant.Name ~= "LegClone" then
+						if descendant.Name ~= "HitBox" then
 						descendant.Transparency = 0
+						end
+					end
 					end
 				end
 			end
@@ -813,7 +822,11 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
 					if descendant.Name ~= "HumanoidRootPart" then
+						if descendant.Name ~= "LegClone" then
+						if descendant.Name ~= "HitBox" then
 						descendant.Transparency = 1
+						end
+						end
 					end
 				end
 			end
@@ -828,7 +841,11 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			for index, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 				if descendant.ClassName == "Part" or descendant.ClassName == "WedgePart" then
 					if descendant.Name ~= "HumanoidRootPart" then
+						if descendant.Name ~= "LegClone" then
+							if descendant.Name ~= "HitBox" then
 						descendant.Transparency = 0
+						end
+						end
 					end
 				end
 			end
