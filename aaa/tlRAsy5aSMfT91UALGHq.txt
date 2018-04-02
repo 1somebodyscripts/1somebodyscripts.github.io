@@ -264,11 +264,10 @@ tool.Activated:connect(function()
 end)
 
 tool.Unequipped:connect(function()
-	--change back
+	game.Players.LocalPlayer.Character.Torso["Right Shoulder"].C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(0, 1.55, 0)
 end)
 
 tool.Equipped:connect(function()
-	--equip pose ok
 end)
 
 hitbox.Touched:connect(function(hit)
